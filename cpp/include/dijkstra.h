@@ -7,6 +7,8 @@
 struct DijkstraResult {
     double distance;
     std::vector<int> path;
+    int nodesExpanded;
+    int edgesExamined;
 };
 
 DijkstraResult dijkstra(

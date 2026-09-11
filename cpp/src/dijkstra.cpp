@@ -27,6 +27,9 @@ DijkstraResult dijkstra(
         std::greater<QueueEntry>
     > priorityQueue;
 
+    int nodesExpanded = 0;
+    int edgesExamined = 0;
+
     // Initialize all distances to infinity
     for (int node : graph.getNodes()) {
         distances[node] = std::numeric_limits<double>::infinity();
@@ -48,6 +51,7 @@ DijkstraResult dijkstra(
         if (currentDistance > distances[currentNode]) {
             continue;
         }
+        nodesExpanded++;
 
         // We have reached the destination
         if (currentNode == destination) {
@@ -56,6 +60,7 @@ DijkstraResult dijkstra(
 
         // Examine all outgoing edges
         for (const Edge& edge : graph.getNeighbors(currentNode)) {
+            edgesExamined++;
 
             double newDistance =
                 currentDistance + edge.weight;
@@ -83,7 +88,9 @@ DijkstraResult dijkstra(
     ) {
         return {
             std::numeric_limits<double>::infinity(),
-            {}
+            {},
+            nodesExpanded,
+            edgesExamined
         };
     }
 
@@ -107,6 +114,8 @@ DijkstraResult dijkstra(
 
     return {
         distances[destination],
-        path
+        path,
+        nodesExpanded,
+        edgesExamined
     };
 }

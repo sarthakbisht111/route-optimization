@@ -19,6 +19,10 @@ void testShortestPath() {
     std::vector<int> expectedPath = {1, 3, 4};
 
     assert(result.path == expectedPath);
+    assert(result.nodesExpanded > 0);
+    assert(result.edgesExamined > 0);
+
+    
 
     std::cout << "PASS: shortest path\n";
 }
@@ -35,6 +39,8 @@ void testSourceEqualsDestination() {
     std::vector<int> expectedPath = {1};
 
     assert(result.path == expectedPath);
+    assert(result.nodesExpanded > 0);
+    assert(result.edgesExamined == 0);
 
     std::cout << "PASS: source equals destination\n";
 }
@@ -49,6 +55,9 @@ void testUnreachableDestination() {
 
     assert(std::isinf(result.distance));
     assert(result.path.empty());
+
+    assert(result.nodesExpanded > 0);
+    assert(result.edgesExamined > 0);
 
     std::cout << "PASS: unreachable destination\n";
 }
@@ -67,6 +76,8 @@ void testChoosesLowerCostPath() {
     std::vector<int> expectedPath = {1, 3, 2};
 
     assert(result.path == expectedPath);
+    assert(result.nodesExpanded > 0);
+    assert(result.edgesExamined > 0);
 
     std::cout << "PASS: lower cost path selection\n";
 }

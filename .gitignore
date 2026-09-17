@@ -4,5 +4,6 @@ coverage/
 *.log
 *.exe
 *.o
+*.obj
 *.out
 build/
